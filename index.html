@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТанюшА — Салон красоты в Балашихе | Ул. Твардовского, 16</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond (для заголовков и лого) & Montserrat (для текста) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FAF6F0',
+                        beige: '#F3EAE0',
+                        sand: '#E6D7C3',
+                        gold: '#C59B6D',
+                        goldDark: '#A87E51',
+                        rose: '#D9A796',
+                        roseLight: '#F4E6E1',
+                        charcoal: '#2C2523',
+                        muted: '#6E6259'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(44, 37, 35, 0.06)',
+                        'glow': '0 10px 25px -5px rgba(197, 155, 109, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF6F0;
+            color: #2C2523;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-logo {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF6F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D5C3AE;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C59B6D;
+        }
+        /* Анимации и декоративные элементы */
+        .glass-header {
+            background: rgba(250, 246, 240, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .service-row {
+            transition: all 0.25s ease;
+        }
+        .service-row:hover {
+            background-color: #F3EAE0;
+            transform: translateX(4px);
+        }
+        .tab-btn.active {
+            background-color: #2C2523;
+            color: #FAF6F0;
+            border-color: #2C2523;
+        }
+        @keyframes pulse-gentle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
+        .animate-float {
+            animation: pulse-gentle 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold selection:text-white">
+
+    <!-- ================= ШАПКА (HEADER) ================= -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-header border-b border-sand/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Шрифтовой Логотип -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-br from-gold to-rose flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                        <span class="font-serif text-2xl font-bold tracking-wider">Т</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-charcoal leading-none">
+                            Танюш<span class="text-gold italic">А</span>
+                        </span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-muted mt-0.5 font-medium">
+                            Салон красоты • Балашиха
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Навигация (ПК) -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-charcoal/80">
+                    <a href="#advantages" class="hover:text-gold transition-colors">О салоне</a>
+                    <a href="#directions" class="hover:text-gold transition-colors">Направления</a>
+                    <a href="#prices" class="hover:text-gold transition-colors">Услуги и цены</a>
+                    <a href="#calculator" class="hover:text-gold transition-colors flex items-center gap-1">
+                        <i class="ph-fill ph-sparkle text-gold"></i> Калькулятор
+                    </a>
+                    <a href="#contacts" class="hover:text-gold transition-colors">Контакты</a>
+                </nav>
+
+                <!-- Кнопки справа -->
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="text-right hidden lg:block">
+                        <div class="text-xs text-muted flex items-center justify-end gap-1">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            Пн-Сб 09:00–20:00
+                        </div>
+                        <div class="text-xs font-semibold text-charcoal">ул. Твардовского, 16</div>
+                    </div>
+                    <button onclick="openBookingModal()" class="bg-charcoal hover:bg-gold text-white px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 shadow-sm hover:shadow-glow flex items-center gap-2">
+                        <span>Записаться</span>
+                        <i class="ph ph-arrow-up-right text-base"></i>
+                    </button>
+                </div>
+
+                <!-- Кнопка мобильного меню -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-beige text-charcoal hover:bg-sand transition-colors" aria-label="Меню">
+                    <i id="menu-icon" class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Мобильное выпадающее меню -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-b border-sand px-6 py-6 space-y-4 shadow-xl">
+            <div class="flex flex-col space-y-3 text-base font-medium text-charcoal">
+                <a href="#advantages" onclick="toggleMobileMenu()" class="py-2 border-b border-sand/40 hover:text-gold">О салоне</a>
+                <a href="#directions" onclick="toggleMobileMenu()" class="py-2 border-b border-sand/40 hover:text-gold">Направления</a>
+                <a href="#prices" onclick="toggleMobileMenu()" class="py-2 border-b border-sand/40 hover:text-gold">Прайс-лист (20 услуг)</a>
+                <a href="#calculator" onclick="toggleMobileMenu()" class="py-2 border-b border-sand/40 hover:text-gold flex items-center gap-2">
+                    <i class="ph-fill ph-sparkle text-gold"></i> Собрать свой визит
+                </a>
+                <a href="#contacts" onclick="toggleMobileMenu()" class="py-2 hover:text-gold">Адрес и контакты</a>
+            </div>
+            <div class="pt-4 border-t border-sand flex flex-col gap-3">
+                <div class="text-xs text-muted">
+                    <p class="font-semibold text-charcoal">📍 Балашиха, мкр. 27а, ул. Твардовского, 16 (1 этаж)</p>
+                    <p class="mt-1">🕒 Пн–Сб: 09:00–20:00 | Вс: 10:00–19:00</p>
+                </div>
+                <button onclick="toggleMobileMenu(); openBookingModal();" class="w-full bg-gold hover:bg-goldDark text-white py-3.5 rounded-full font-semibold text-sm shadow-glow flex items-center justify-center gap-2">
+                    <i class="ph-fill ph-chat-circle-dots text-lg"></i>
+                    Быстрая запись через мессенджер
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= ГЛАВНЫЙ ЭКРАН (HERO) ================= -->
+    <section class="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+        <!-- Декоративные фоновые пятна -->
+        <div class="absolute top-10 left-0 w-96 h-96 bg-roseLight rounded-full mix-blend-multiply filter blur-3xl opacity-60 -z-10"></div>
+        <div class="absolute bottom-0 right-10 w-96 h-96 bg-sand rounded-full mix-blend-multiply filter blur-3xl opacity-50 -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Левая колонка: Текст и кнопки -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-beige border border-sand text-charcoal text-xs font-medium tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-gold"></span>
+                        Бьюти-пространство для всей семьи в Балашихе
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-charcoal leading-[1.12] tracking-tight">
+                        Искусство вашей красоты и ухода в салоне <span class="italic font-normal text-gold">«ТанюшА»</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-muted max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Стильные стрижки и сложное окрашивание, безупречный маникюр и выразительный взгляд. Заботимся о вашем образе в уютной атмосфере по честным и доступным ценам.
+                    </p>
+
+                    <!-- Кнопки призыва к действию -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 rounded-full bg-charcoal hover:bg-gold text-white font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-glow flex items-center justify-center gap-3 group">
+                            <i class="ph-fill ph-paper-plane-tilt text-lg text-gold group-hover:text-white transition-colors"></i>
+                            <span>Записаться в мессенджере</span>
+                        </button>
+                        <a href="#prices" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white hover:bg-beige text-charcoal border border-sand font-medium text-sm transition-all duration-300 flex items-center justify-center gap-2">
+                            <span>Смотреть прайс-лист</span>
+                            <i class="ph ph-caret-down text-base"></i>
+                        </a>
+                    </div>
+
+                    <!-- Инфо-бейджи внизу первого экрана -->
+                    <div class="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto lg:mx-0 border-t border-sand/70">
+                        <div class="flex items-center gap-3.5 bg-white/70 p-3.5 rounded-2xl border border-sand/50 text-left">
+                            <div class="w-10 h-10 rounded-xl bg-beige flex items-center justify-center text-gold shrink-0">
+                                <i class="ph-fill ph-map-pin text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-muted">Наше расположение</div>
+                                <div class="text-sm font-semibold text-charcoal">ул. Твардовского, 16 (1 этаж)</div>
+                                <div class="text-[11px] text-muted">мкр. 27а, г. Балашиха</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3.5 bg-white/70 p-3.5 rounded-2xl border border-sand/50 text-left">
+                            <div class="w-10 h-10 rounded-xl bg-beige flex items-center justify-center text-gold shrink-0">
+                                <i class="ph-fill ph-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-muted">Режим работы</div>
+                                <div class="text-sm font-semibold text-charcoal">Пн–Сб: 09:00 – 20:00</div>
+                                <div class="text-[11px] text-muted">Воскресенье: 10:00 – 19:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая колонка: Эстетичная фото-композиция -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Основное фото -->
+                        <div class="rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] relative">
+                            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Атмосфера салона красоты ТанюшА" 
+                                 onerror="this.src='https://placehold.co/800x1000/E6D7C3/2C2523?text=ТанюшА'"
+                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6 text-white">
+                                <p class="font-serif italic text-2xl">«Красота в каждой детали»</p>
+                                <p class="text-xs text-white/80 mt-1">Парикмахерский зал • Ногтевой сервис • Брови и ресницы</p>
+                            </div>
+                        </div>
+
+                        <!-- Плавающая карточка с ценами -->
+                        <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-white p-4 rounded-2xl shadow-xl border border-sand max-w-[230px]">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-roseLight text-charcoal flex items-center justify-center font-serif font-bold text-lg">
+                                    ₽
+                                </div>
+                                <div>
+                                    <p class="text-xs text-muted">Честные цены</p>
+                                    <p class="text-sm font-bold text-charcoal">Стрижки от 300 ₽</p>
+                                    <p class="text-[11px] text-gold font-medium">Маникюр от 500 ₽</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Плавающий бейдж сверху -->
+                        <div class="absolute -top-5 -right-3 sm:-right-6 bg-charcoal text-white px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2.5">
+                            <i class="ph-fill ph-star text-gold text-xl"></i>
+                            <div>
+                                <div class="text-xs font-semibold">20 видов услуг</div>
+                                <div class="text-[10px] text-white/70">Комплексный уход</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ПОЧЕМУ ВЫБИРАЮТ НАС (ПРЕИМУЩЕСТВА) ================= -->
+    <section id="advantages" class="py-16 bg-beige/60 border-y border-sand/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-[0.2em] text-gold font-semibold">Забота и качество</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-charcoal mt-2">Почему гости выбирают салон «ТанюшА»</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Карточка 1 -->
+                <div class="bg-cream p-7 rounded-3xl border border-sand/70 shadow-soft hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-roseLight text-charcoal flex items-center justify-center mb-5">
+                        <i class="ph ph-heart text-2xl text-goldDark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-charcoal mb-2">Уютная атмосфера</h3>
+                    <p class="text-sm text-muted leading-relaxed">
+                        У нас тепло, спокойно и комфортно. Вы отдыхаете от суеты, пока мы бережно заботимся о вашей красоте.
+                    </p>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="bg-cream p-7 rounded-3xl border border-sand/70 shadow-soft hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-roseLight text-charcoal flex items-center justify-center mb-5">
+                        <i class="ph ph-shield-check text-2xl text-goldDark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-charcoal mb-2">Стерильность 100%</h3>
+                    <p class="text-sm text-muted leading-relaxed">
+                        Строго соблюдаем все этапы дезинфекции и стерилизации инструментов, используем проверенные материалы.
+                    </p>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="bg-cream p-7 rounded-3xl border border-sand/70 shadow-soft hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-roseLight text-charcoal flex items-center justify-center mb-5">
+                        <i class="ph ph-wallet text-2xl text-goldDark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-charcoal mb-2">Доступные цены</h3>
+                    <p class="text-sm text-muted leading-relaxed">
+                        Прозрачный прайс для всей семьи — женские, мужские и детские процедуры без скрытых наценок.
+                    </p>
+                </div>
+
+                <!-- Карточка 4 -->
+                <div class="bg-cream p-7 rounded-3xl border border-sand/70 shadow-soft hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-roseLight text-charcoal flex items-center justify-center mb-5">
+                        <i class="ph ph- storefront text-2xl text-goldDark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-charcoal mb-2">Удобная локация</h3>
+                    <p class="text-sm text-muted leading-relaxed">
+                        Находимся в Балашихе (мкр. 27а, ул. Твардовского, 16) на 1 этаже. Работаем для вас без выходных!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= НАПРАВЛЕНИЯ САЛОНА (ВИЗУАЛЬНЫЕ КАРТОЧКИ) ================= -->
+    <section id="directions" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.2em] text-gold font-semibold">Наши залы</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold text-charcoal mt-2">Три главных направления</h2>
+                </div>
+                <p class="text-sm text-muted max-w-md mt-3 md:mt-0">
+                    Собрали все самые востребованные бьюти-процедуры в одном месте, чтобы вы могли сэкономить время.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Направление 1: Парикмахерский зал -->
+                <div class="group rounded-3xl overflow-hidden bg-white border border-sand shadow-soft flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Стрижки и окрашивание" 
+                                 onerror="this.src='https://placehold.co/600x400/E6D7C3/2C2523?text=Волосы'"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 right-4 bg-charcoal/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full">
+                                8 услуг
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-charcoal">Стрижки / Окрашивание / Кератин</h3>
+                            <p class="text-sm text-muted mt-2">
+                                Женские, мужские и детские стрижки, оформление бороды, простое и сложное окрашивание, тонирование седины и завивка.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-sand/50 flex items-center justify-between">
+                        <span class="text-sm font-semibold text-goldDark">от 300 ₽</span>
+                        <button onclick="filterServices('hair'); document.getElementById('prices').scrollIntoView({behavior:'smooth'})" class="text-xs font-semibold uppercase tracking-wider text-charcoal hover:text-gold flex items-center gap-1">
+                            Открыть цены <i class="ph ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Направление 2: Ногтевой сервис -->
+                <div class="group rounded-3xl overflow-hidden bg-white border border-sand shadow-soft flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Ногтевой сервис" 
+                                 onerror="this.src='https://placehold.co/600x400/E6D7C3/2C2523?text=Маникюр'"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 right-4 bg-charcoal/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full">
+                                7 услуг
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-charcoal">Ногтевой сервис</h3>
+                            <p class="text-sm text-muted mt-2">
+                                Аккуратный женский и мужской маникюр и педикюр, стойкое покрытие шеллак, бережное снятие и укрепление ногтевой пластины базой.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-sand/50 flex items-center justify-between">
+                        <span class="text-sm font-semibold text-goldDark">от 300 ₽</span>
+                        <button onclick="filterServices('nails'); document.getElementById('prices').scrollIntoView({behavior:'smooth'})" class="text-xs font-semibold uppercase tracking-wider text-charcoal hover:text-gold flex items-center gap-1">
+                            Открыть цены <i class="ph ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Направление 3: Ресницы и брови -->
+                <div class="group rounded-3xl overflow-hidden bg-white border border-sand shadow-soft flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Ресницы и брови" 
+                                 onerror="this.src='https://placehold.co/600x400/E6D7C3/2C2523?text=Ресницы+и+Брови'"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 right-4 bg-charcoal/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full">
+                                5 услуг
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-charcoal">Ресницы / Брови / Ламинирование</h3>
+                            <p class="text-sm text-muted mt-2">
+                                Наращивание ресниц (классика, объемы, цветные лучи), архитектура, коррекция, окрашивание и долговременное ламинирование бровей.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-sand/50 flex items-center justify-between">
+                        <span class="text-sm font-semibold text-goldDark">от 300 ₽</span>
+                        <button onclick="filterServices('lashes'); document.getElementById('prices').scrollIntoView({behavior:'smooth'})" class="text-xs font-semibold uppercase tracking-wider text-charcoal hover:text-gold flex items-center gap-1">
+                            Открыть цены <i class="ph ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= УСЛУГИ И ПРАЙС-ЛИСТ ================= -->
+    <section id="prices" class="py-20 bg-white border-t border-sand">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Заголовок секции -->
+            <div class="text-center mb-10">
+                <span class="text-xs uppercase tracking-[0.2em] text-gold font-semibold">Прозрачная стоимость</span>
+                <h2 class="text-3xl sm:text-5xl font-bold text-charcoal mt-2">Прайс-лист салона «ТанюшА»</h2>
+                <p class="text-sm text-muted mt-3 max-w-xl mx-auto">
+                    Нажмите на любую услугу или кнопку «Записаться», чтобы сразу отправить заявку в удобный мессенджер.
+                </p>
+            </div>
+
+            <!-- Фильтры (Табы категорий) -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+                <button onclick="filterServices('all')" id="tab-all" class="tab-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium border border-sand transition-all">
+                    Все услуги <span class="ml-1 opacity-75">(20)</span>
+                </button>
+                <button onclick="filterServices('hair')" id="tab-hair" class="tab-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium border border-sand bg-cream text-charcoal hover:bg-beige transition-all">
+                    💇‍♀️ Стрижки / Окрашивание / Кератин <span class="ml-1 opacity-70">(8)</span>
+                </button>
+                <button onclick="filterServices('nails')" id="tab-nails" class="tab-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium border border-sand bg-cream text-charcoal hover:bg-beige transition-all">
+                    💅 Ногтевой сервис <span class="ml-1 opacity-70">(7)</span>
+                </button>
+                <button onclick="filterServices('lashes')" id="tab-lashes" class="tab-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium border border-sand bg-cream text-charcoal hover:bg-beige transition-all">
+                    ✨ Ресницы / Брови / Ламинирование <span class="ml-1 opacity-70">(5)</span>
+                </button>
+            </div>
+
+            <!-- Контейнер с категориями прайса -->
+            <div class="space-y-12">
+
+                <!-- КАТЕГОРИЯ 1: Стрижки / Окрашивание / Кератин (8) -->
+                <div id="category-hair" class="price-category bg-cream/70 rounded-3xl p-6 sm:p-8 border border-sand">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-5 border-b border-sand gap-2">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-gold/20 text-goldDark flex items-center justify-center">
+                                <i class="ph-fill ph-scissors text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl sm:text-3xl font-bold text-charcoal">Стрижки / Окрашивание / Кератин</h3>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center self-start sm:self-auto px-3.5 py-1 rounded-full text-xs font-semibold bg-white border border-sand text-muted">
+                            8 услуг
+                        </span>
+                    </div>
+
+                    <div class="divide-y divide-sand/60">
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Мужские стрижки</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">300–500 ₽</span>
+                                <button onclick="bookSpecificService('Мужские стрижки (300–500 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Детские стрижки</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">400–500 ₽</span>
+                                <button onclick="bookSpecificService('Детские стрижки (400–500 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Женские стрижки</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">от 650 ₽</span>
+                                <button onclick="bookSpecificService('Женские стрижки (от 650 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Борода / Усы</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">500 ₽</span>
+                                <button onclick="bookSpecificService('Борода / Усы (500 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Окрашивание</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">от 2 000 ₽</span>
+                                <button onclick="bookSpecificService('Окрашивание (от 2 000 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Сложное окрашивание</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">от 3 500 ₽</span>
+                                <button onclick="bookSpecificService('Сложное окрашивание (от 3 500 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Химическая завивка</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">от 2 000 ₽</span>
+                                <button onclick="bookSpecificService('Химическая завивка (от 2 000 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Тонирование седины</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">2 500 ₽</span>
+                                <button onclick="bookSpecificService('Тонирование седины (2 500 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- КАТЕГОРИРИЯ 2: Ногтевой сервис (7) -->
+                <div id="category-nails" class="price-category bg-cream/70 rounded-3xl p-6 sm:p-8 border border-sand">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-5 border-b border-sand gap-2">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-rose/30 text-charcoal flex items-center justify-center">
+                                <i class="ph-fill ph-hand-palm text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl sm:text-3xl font-bold text-charcoal">Ногтевой сервис</h3>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center self-start sm:self-auto px-3.5 py-1 rounded-full text-xs font-semibold bg-white border border-sand text-muted">
+                            7 услуг
+                        </span>
+                    </div>
+
+                    <div class="divide-y divide-sand/60">
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Маникюр женский</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">500–600 ₽</span>
+                                <button onclick="bookSpecificService('Маникюр женский (500–600 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Маникюр мужской</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">600 ₽</span>
+                                <button onclick="bookSpecificService('Маникюр мужской (600 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Педикюр женский</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">от 1 000 ₽</span>
+                                <button onclick="bookSpecificService('Педикюр женский (от 1 000 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Педикюр мужской</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">от 1 000 ₽</span>
+                                <button onclick="bookSpecificService('Педикюр мужской (от 1 000 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Шеллак (покрытие)</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">900 ₽</span>
+                                <button onclick="bookSpecificService('Шеллак (900 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Укрепление базой</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">500 ₽</span>
+                                <button onclick="bookSpecificService('Укрепление базой (500 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Снятие покрытия</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">300 ₽</span>
+                                <button onclick="bookSpecificService('Снятие покрытия — ногтевой сервис (300 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- КАТЕГОРИЯ 3: Наращивание ресниц / Брови / Ламинирование (5) -->
+                <div id="category-lashes" class="price-category bg-cream/70 rounded-3xl p-6 sm:p-8 border border-sand">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-5 border-b border-sand gap-2">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-gold/20 text-goldDark flex items-center justify-center">
+                                <i class="ph-fill ph-eye text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl sm:text-3xl font-bold text-charcoal">Наращивание ресниц / Брови / Ламинирование</h3>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center self-start sm:self-auto px-3.5 py-1 rounded-full text-xs font-semibold bg-white border border-sand text-muted">
+                            5 услуг
+                        </span>
+                    </div>
+
+                    <div class="divide-y divide-sand/60">
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Наращивание ресниц</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">2 000–3 000 ₽</span>
+                                <button onclick="bookSpecificService('Наращивание ресниц (2 000–3 000 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Ламинирование бровей</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">от 1 500 ₽</span>
+                                <button onclick="bookSpecificService('Ламинирование бровей (от 1 500 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Коррекция / окрашивание / форма бровей</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">1 000 ₽</span>
+                                <button onclick="bookSpecificService('Коррекция / окрашивание / форма бровей (1 000 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Цветные ресницы</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">300 ₽</span>
+                                <button onclick="bookSpecificService('Цветные ресницы (300 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="service-row py-3.5 px-3 rounded-xl flex items-center justify-between gap-4">
+                            <span class="text-sm sm:text-base font-medium text-charcoal">Снятие ресниц</span>
+                            <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-charcoal">300 ₽</span>
+                                <button onclick="bookSpecificService('Снятие ресниц (300 ₽)')" class="text-xs px-3.5 py-1.5 rounded-full bg-white hover:bg-charcoal hover:text-white text-charcoal border border-sand transition-colors font-medium">
+                                    Записаться
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ИНТЕРАКТИВНЫЙ КОНСТРУКТОР ВИЗИТА (КАЛЬКУЛЯТОР) ================= -->
+    <section id="calculator" class="py-20 bg-beige/70 border-t border-sand">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-[2.5rem] p-6 sm:p-10 shadow-soft border border-sand">
+                <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-8 border-b border-sand gap-4">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.2em] text-gold font-semibold flex items-center gap-1.5">
+                            <i class="ph-fill ph-magic-wand"></i> Удобный расчет онлайн
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-charcoal mt-1">Соберите свой комплекс процедур</h2>
+                        <p class="text-sm text-muted mt-1">Отметьте нужные услуги галочкой, чтобы рассчитать ориентировочную сумму и записаться в 1 клик.</p>
+                    </div>
+                    <button onclick="resetCalculator()" class="self-start md:self-auto text-xs text-muted hover:text-charcoal underline">
+                        Сбросить выбор
+                    </button>
+                </div>
+
+                <!-- Сетка чекбоксов с услугами -->
+                <div id="calc-items-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
+                    <!-- Генерируется через JS -->
+                </div>
+
+                <!-- Итоговая панель калькулятора -->
+                <div class="bg-cream rounded-2xl p-6 border border-sand flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div>
+                        <div class="text-xs text-muted uppercase tracking-wider">Выбрано услуг: <span id="calc-count" class="font-bold text-charcoal">0</span></div>
+                        <div class="text-2xl sm:text-3xl font-bold text-charcoal mt-1">
+                            Ориентировочно: <span id="calc-total" class="text-goldDark">0 ₽</span>
+                        </div>
+                        <p class="text-[11px] text-muted mt-1">*Точная стоимость зависит от длины/густоты волос и сложности работы</p>
+                    </div>
+
+                    <button onclick="sendCalculatedOrder()" class="w-full sm:w-auto px-8 py-4 rounded-full bg-charcoal hover:bg-gold text-white font-semibold text-sm transition-all shadow-md hover:shadow-glow flex items-center justify-center gap-2 shrink-0">
+                        <i class="ph-fill ph-chat-circle-text text-lg"></i>
+                        <span>Записаться на выбранные услуги</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= КОНТАКТЫ И КАК НАС НАЙТИ ================= -->
+    <section id="contacts" class="py-20 bg-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+                
+                <!-- Левая карточка: Информация и кнопки мессенджеров -->
+                <div class="lg:col-span-6 bg-white p-8 sm:p-10 rounded-[2.5rem] border border-sand shadow-soft flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.2em] text-gold font-semibold">Ждем вас в гости</span>
+                        <h2 class="text-3xl sm:text-5xl font-bold text-charcoal mt-2 mb-6">Контакты салона «ТанюшА»</h2>
+
+                        <div class="space-y-6">
+                            <!-- Адрес -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-beige text-goldDark flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="ph-fill ph-map-pin text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs uppercase tracking-wider text-muted font-semibold">Адрес салона</h4>
+                                    <p class="text-lg font-bold text-charcoal mt-0.5">Улица Твардовского, 16, 1 этаж</p>
+                                    <p class="text-sm text-muted">27а м-н, г. Балашиха, Московская область</p>
+                                    <button onclick="copyAddress()" class="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-goldDark hover:text-charcoal transition-colors">
+                                        <i class="ph ph-copy"></i> <span id="copy-address-text">Скопировать адрес</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- График работы -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-beige text-goldDark flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="ph-fill ph-clock text-2xl"></i>
+                                </div>
+                                <div class="w-full">
+                                    <h4 class="text-xs uppercase tracking-wider text-muted font-semibold">График работы</h4>
+                                    <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-md">
+                                        <div class="bg-cream px-4 py-2.5 rounded-xl border border-sand/70">
+                                            <div class="text-xs text-muted">Понедельник — Суббота</div>
+                                            <div class="text-base font-bold text-charcoal">09:00 – 20:00</div>
+                                        </div>
+                                        <div class="bg-cream px-4 py-2.5 rounded-xl border border-sand/70">
+                                            <div class="text-xs text-muted">Воскресенье</div>
+                                            <div class="text-base font-bold text-charcoal">10:00 – 19:00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Блок кнопок мессенджеров -->
+                    <div class="mt-10 pt-8 border-t border-sand">
+                        <h4 class="text-sm font-semibold text-charcoal mb-3 flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                            Быстрая связь и запись через мессенджеры:
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <a href="https://wa.me/?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20%D1%81%D0%B0%D0%BB%D0%BE%D0%BD%20%D0%BA%D1%80%D0%B0%D1%81%D0%BE%D1%82%D1%8B%20%C2%AB%D0%A2%D0%B0%D0%BD%D1%8E%D1%88%D0%90%C2%BB." target="_blank" rel="noopener noreferrer" 
+                               class="flex items-center justify-center gap-3 py-4 px-5 rounded-2xl bg-[#25D366] hover:bg-[#1ebe5a] text-white font-semibold text-sm shadow-md transition-all">
+                                <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
+                                <span>Написать в WhatsApp</span>
+                            </a>
+                            <a href="https://t.me/share/url?url=https://tanyusha-salon.ru&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20%D1%81%D0%B0%D0%BB%D0%BE%D0%BD%20%C2%AB%D0%A2%D0%B0%D0%BD%D1%8E%D1%88%D0%90%C2%BB" target="_blank" rel="noopener noreferrer"
+                               class="flex items-center justify-center gap-3 py-4 px-5 rounded-2xl bg-[#2AABEE] hover:bg-[#2298d6] text-white font-semibold text-sm shadow-md transition-all">
+                                <i class="ph-fill ph-telegram-logo text-2xl"></i>
+                                <span>Написать в Telegram</span>
+                            </a>
+                        </div>
+                        <button onclick="openBookingModal()" class="mt-3 w-full py-3.5 px-5 rounded-2xl bg-beige hover:bg-sand text-charcoal font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                            <i class="ph-fill ph-list-checks text-base text-goldDark"></i>
+                            Или заполнить быструю анкету для записи
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Правая карточка: Интерактивная карта и маршрут -->
+                <div class="lg:col-span-6 rounded-[2.5rem] overflow-hidden border border-sand shadow-soft bg-white flex flex-col justify-between relative min-h-[420px]">
+                    <!-- Встроенная карта OpenStreetMap с точкой ул. Твардовского, 16, Балашиха -->
+                    <div class="w-full h-full min-h-[340px] relative bg-beige">
+                        <iframe 
+                            title="Карта расположения салона ТанюшА в Балашихе"
+                            width="100%" 
+                            height="100%" 
+                            frameborder="0" 
+                            scrolling="no" 
+                            marginheight="0" 
+                            marginwidth="0" 
+                            class="w-full h-full min-h-[360px] filter contrast-[0.95] sepia-[0.12]"
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=37.9580%2C55.7890%2C37.9750%2C55.7970&amp;layer=mapnik&amp;marker=55.7931%2C37.9665">
+                        </iframe>
+                    </div>
+
+                    <!-- Нижняя панель навигаторов -->
+                    <div class="p-6 bg-white border-t border-sand flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="text-center sm:text-left">
+                            <p class="text-xs text-muted">Быстрое построение маршрута:</p>
+                            <p class="text-sm font-bold text-charcoal">Балашиха, мкр. 27а, ул. Твардовского, 16</p>
+                        </div>
+                        <div class="flex items-center gap-2.5 w-full sm:w-auto justify-center">
+                            <a href="https://yandex.ru/maps/?text=Московская+область,+Балашиха,+улица+Твардовского,+16" target="_blank" rel="noopener noreferrer" 
+                               class="px-4 py-2.5 rounded-xl bg-charcoal hover:bg-gold text-white text-xs font-semibold transition-colors flex items-center gap-1.5">
+                                <i class="ph-fill ph-navigation-arrow"></i> Яндекс.Карты
+                            </a>
+                            <a href="https://2gis.ru/search/Балашиха%20Твардовского%2016" target="_blank" rel="noopener noreferrer" 
+                               class="px-4 py-2.5 rounded-xl bg-beige hover:bg-sand text-charcoal text-xs font-semibold transition-colors flex items-center gap-1.5">
+                                <i class="ph-fill ph-compass"></i> 2ГИС
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ПОДВАЛ (FOOTER) ================= -->
+    <footer class="bg-charcoal text-cream py-12 border-t border-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gold flex items-center justify-center text-white font-serif font-bold text-xl">
+                        Т
+                    </div>
+                    <div>
+                        <span class="font-serif text-3xl font-bold text-white tracking-tight">Танюш<span class="text-gold italic">А</span></span>
+                        <p class="text-xs text-white/60">Салон красоты в Балашихе</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6 text-xs text-white/80">
+                    <a href="#advantages" class="hover:text-gold transition-colors">О салоне</a>
+                    <a href="#directions" class="hover:text-gold transition-colors">Направления</a>
+                    <a href="#prices" class="hover:text-gold transition-colors">Прайс-лист</a>
+                    <a href="#calculator" class="hover:text-gold transition-colors">Калькулятор услуг</a>
+                    <a href="#contacts" class="hover:text-gold transition-colors">Контакты</a>
+                </div>
+
+                <button onclick="openBookingModal()" class="px-6 py-2.5 rounded-full bg-gold hover:bg-goldDark text-white text-xs font-semibold uppercase tracking-wider transition-all">
+                    Записаться онлайн
+                </button>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-white/50 gap-4 text-center sm:text-left">
+                <p>© 2025 Салон красоты «ТанюшА». Московская обл., г. Балашиха, мкр. 27а, ул. Твардовского, 16, 1 этаж.</p>
+                <p>Пн–Сб: 09:00–20:00 • Вс: 10:00–19:00</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= ПЛАВАЮЩАЯ КНОПКА МЕССЕНДЖЕРОВ ================= -->
+    <button onclick="openBookingModal()" aria-label="Быстрая запись" class="fixed bottom-6 right-6 z-40 bg-charcoal hover:bg-gold text-white p-4 rounded-full shadow-2xl border-2 border-gold animate-float flex items-center gap-2.5 group transition-colors">
+        <i class="ph-fill ph-chat-dots text-2xl text-gold group-hover:text-white"></i>
+        <span class="hidden sm:inline text-xs font-semibold pr-1">Записаться</span>
+    </button>
+
+    <!-- ================= МОДАЛЬНОЕ ОКНО БЫСТРОЙ ЗАПИСИ ЧЕРЕЗ МЕССЕНДЖЕРЫ ================= -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-charcoal/60 backdrop-blur-sm">
+        <div class="bg-cream border border-sand rounded-[2rem] max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-fadeIn">
+            
+            <!-- Кнопка закрытия -->
+            <button onclick="closeBookingModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-beige hover:bg-sand text-charcoal flex items-center justify-center transition-colors">
+                <i class="ph ph-x text-lg"></i>
+            </button>
+
+            <div class="flex items-center gap-2.5 text-goldDark text-xs font-semibold uppercase tracking-widest mb-1">
+                <i class="ph-fill ph-sparkle"></i> Онлайн-запись в салон «ТанюшА»
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold text-charcoal">Быстрая связь через мессенджер</h3>
+            <p class="text-xs sm:text-sm text-muted mt-1">
+                Укажите желаемую услугу и удобное время — мы сформируем готовое сообщение для отправки администратору.
+            </p>
+
+            <div class="space-y-4 mt-5">
+                <div>
+                    <label class="block text-xs font-semibold text-charcoal uppercase tracking-wider mb-1.5">Ваше имя</label>
+                    <input type="text" id="modal-name" placeholder="Например, Анна" class="w-full px-4 py-3 rounded-xl bg-white border border-sand text-sm text-charcoal focus:outline-none focus:border-gold">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-charcoal uppercase tracking-wider mb-1.5">Выбранная услуга или направление</label>
+                    <input type="text" id="modal-service" placeholder="Например: Женская стрижка + Маникюр" class="w-full px-4 py-3 rounded-xl bg-white border border-sand text-sm text-charcoal focus:outline-none focus:border-gold">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-charcoal uppercase tracking-wider mb-1.5">Желаемый день и время</label>
+                    <input type="text" id="modal-time" placeholder="Например: Завтра после 14:00" class="w-full px-4 py-3 rounded-xl bg-white border border-sand text-sm text-charcoal focus:outline-none focus:border-gold">
+                </div>
+            </div>
+
+            <!-- Выбор мессенджера для отправки -->
+            <div class="mt-6 pt-5 border-t border-sand">
+                <p class="text-xs text-muted mb-3 text-center">Выберите удобный мессенджер для отправки заявки:</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button onclick="submitToMessenger('whatsapp')" class="py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#1ebe5a] text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-md transition-all">
+                        <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                        <span>Отправить в WhatsApp</span>
+                    </button>
+                    <button onclick="submitToMessenger('telegram')" class="py-3.5 px-4 rounded-xl bg-[#2AABEE] hover:bg-[#2298d6] text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-md transition-all">
+                        <i class="ph-fill ph-telegram-logo text-xl"></i>
+                        <span>Отправить в Telegram</span>
+                    </button>
+                </div>
+                <button onclick="copyGeneratedMessage()" class="mt-2.5 w-full py-2.5 rounded-xl bg-beige hover:bg-sand text-charcoal text-xs font-medium transition-colors flex items-center justify-center gap-1.5">
+                    <i class="ph ph-copy"></i>
+                    <span id="copy-msg-btn-text">Скопировать текст заявки (для MAX / SMS)</span>
+                </button>
+            </div>
+
+            <div class="mt-4 text-center text-[11px] text-muted">
+                📍 г. Балашиха, мкр. 27а, ул. Твардовского, 16 (1 этаж) • Пн-Сб 09:00-20:00, Вс 10:00-19:00
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= УВЕДОМЛЕНИЕ (TOAST ВМЕСТО ALERT) ================= -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden bg-charcoal text-white px-6 py-3.5 rounded-full shadow-2xl text-xs sm:text-sm font-medium flex items-center gap-2.5 border border-gold">
+        <i class="ph-fill ph-check-circle text-gold text-lg"></i>
+        <span id="toast-message">Готово!</span>
+    </div>
+
+    <!-- ================= СКРИПТЫ И ЛОГИКА ================= -->
+    <script>
+        // База всех 20 услуг для интерактивного калькулятора
+        const servicesData = [
+            // Парикмахерский зал (8)
+            { id: 'h1', title: 'Мужские стрижки', priceText: '300–500 ₽', minPrice: 300, category: 'Волосы' },
+            { id: 'h2', title: 'Детские стрижки', priceText: '400–500 ₽', minPrice: 400, category: 'Волосы' },
+            { id: 'h3', title: 'Женские стрижки', priceText: 'от 650 ₽', minPrice: 650, category: 'Волосы' },
+            { id: 'h4', title: 'Окрашивание', priceText: 'от 2 000 ₽', minPrice: 2000, category: 'Волосы' },
+            { id: 'h5', title: 'Сложное окрашивание', priceText: 'от 3 500 ₽', minPrice: 3500, category: 'Волосы' },
+            { id: 'h6', title: 'Химическая завивка', priceText: 'от 2 000 ₽', minPrice: 2000, category: 'Волосы' },
+            { id: 'h7', title: 'Тонирование седины', priceText: '2 500 ₽', minPrice: 2500, category: 'Волосы' },
+            { id: 'h8', title: 'Борода / Усы', priceText: '500 ₽', minPrice: 500, category: 'Волосы' },
+            // Ногтевой сервис (7)
+            { id: 'n1', title: 'Маникюр женский', priceText: '500–600 ₽', minPrice: 500, category: 'Ногти' },
+            { id: 'n2', title: 'Маникюр мужской', priceText: '600 ₽', minPrice: 600, category: 'Ногти' },
+            { id: 'n3', title: 'Педикюр женский', priceText: 'от 1 000 ₽', minPrice: 1000, category: 'Ногти' },
+            { id: 'n4', title: 'Педикюр мужской', priceText: 'от 1 000 ₽', minPrice: 1000, category: 'Ногти' },
+            { id: 'n5', title: 'Шеллак', priceText: '900 ₽', minPrice: 900, category: 'Ногти' },
+            { id: 'n6', title: 'Укрепление базой', priceText: '500 ₽', minPrice: 500, category: 'Ногти' },
+            { id: 'n7', title: 'Снятие (ногти)', priceText: '300 ₽', minPrice: 300, category: 'Ногти' },
+            // Ресницы и брови (5)
+            { id: 'l1', title: 'Наращивание ресниц', priceText: '2 000–3 000 ₽', minPrice: 2000, category: 'Взгляд' },
+            { id: 'l2', title: 'Ламинирование бровей', priceText: 'от 1 500 ₽', minPrice: 1500, category: 'Взгляд' },
+            { id: 'l3', title: 'Коррекция/окрашивание бровей', priceText: '1 000 ₽', minPrice: 1000, category: 'Взгляд' },
+            { id: 'l4', title: 'Цветные ресницы', priceText: '300 ₽', minPrice: 300, category: 'Взгляд' },
+            { id: 'l5', title: 'Снятие ресниц', priceText: '300 ₽', minPrice: 300, category: 'Взгляд' }
+        ];
+
+        const selectedCalcIds = new Set();
+
+        // Отрисовка элементов калькулятора
+        function renderCalculator() {
+            const container = document.getElementById('calc-items-container');
+            container.innerHTML = '';
+
+            servicesData.forEach(item => {
+                const isSelected = selectedCalcIds.has(item.id);
+                const card = document.createElement('div');
+                card.onclick = () => toggleCalcItem(item.id);
+                card.className = `cursor-pointer p-3.5 rounded-2xl border transition-all flex items-center justify-between gap-3 select-none ${
+                    isSelected 
+                    ? 'bg-charcoal text-white border-charcoal shadow-md' 
+                    : 'bg-cream/60 hover:bg-beige text-charcoal border-sand'
+                }`;
+
+                card.innerHTML = `
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-5 h-5 rounded-md flex items-center justify-center border shrink-0 ${
+                            isSelected ? 'bg-gold border-gold text-white' : 'border-muted/50 bg-white'
+                        }">
+                            ${isSelected ? '<i class="ph-bold ph-check text-xs"></i>' : ''}
+                        </div>
+                        <span class="text-xs sm:text-sm font-medium truncate">${item.title}</span>
+                    </div>
+                    <span class="text-xs font-bold shrink-0 ${isSelected ? 'text-gold' : 'text-muted'}">${item.priceText}</span>
+                `;
+                container.appendChild(card);
+            });
+
+            updateCalculatorSummary();
+        }
+
+        function toggleCalcItem(id) {
+            if (selectedCalcIds.has(id)) {
+                selectedCalcIds.delete(id);
+            } else {
+                selectedCalcIds.add(id);
+            }
+            renderCalculator();
+        }
+
+        function updateCalculatorSummary() {
+            let total = 0;
+            selectedCalcIds.forEach(id => {
+                const service = servicesData.find(s => s.id === id);
+                if (service) total += service.minPrice;
+            });
+
+            document.getElementById('calc-count').textContent = selectedCalcIds.size;
+            document.getElementById('calc-total').textContent = total > 0 ? `от ${total.toLocaleString('ru-RU')} ₽` : '0 ₽';
+        }
+
+        function resetCalculator() {
+            selectedCalcIds.clear();
+            renderCalculator();
+            showToast('Выбор процедур сброшен');
+        }
+
+        function sendCalculatedOrder() {
+            if (selectedCalcIds.size === 0) {
+                openBookingModal();
+                return;
+            }
+            const chosenNames = [];
+            selectedCalcIds.forEach(id => {
+                const s = servicesData.find(item => item.id === id);
+                if (s) chosenNames.push(`${s.title} (${s.priceText})`);
+            });
+            document.getElementById('modal-service').value = chosenNames.join(', ');
+            openBookingModal();
+        }
+
+        // Фильтрация табов прайс-листа
+        function filterServices(category) {
+            const categories = {
+                hair: document.getElementById('category-hair'),
+                nails: document.getElementById('category-nails'),
+                lashes: document.getElementById('category-lashes')
+            };
+
+            const tabs = ['all', 'hair', 'nails', 'lashes'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if (t === category) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            if (category === 'all') {
+                Object.values(categories).forEach(el => el.classList.remove('hidden'));
+            } else {
+                Object.entries(categories).forEach(([key, el]) => {
+                    if (key === category) {
+                        el.classList.remove('hidden');
+                    } else {
+                        el.classList.add('hidden');
+                    }
+                });
+            }
+        }
+
+        // Мобильное меню
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.className = 'ph ph-list text-2xl';
+            } else {
+                icon.className = 'ph ph-x text-2xl';
+            }
+        }
+
+        // Модальное окно записи
+        function openBookingModal() {
+            document.getElementById('booking-modal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        function bookSpecificService(serviceName) {
+            document.getElementById('modal-service').value = serviceName;
+            openBookingModal();
+        }
+
+        function buildMessageText() {
+            const name = document.getElementById('modal-name').value.trim() || 'Гость';
+            const service = document.getElementById('modal-service').value.trim() || 'Консультация / Запись';
+            const time = document.getElementById('modal-time').value.trim() || 'В ближайшее свободное время';
+
+            return `Здравствуйте, салон красоты «ТанюшА»! ✨\nМеня зовут: ${name}\nХочу записаться на: ${service}\nЖелаемое время: ${time}\nАдрес: ул. Твардовского, 16`;
+        }
+
+        function submitToMessenger(platform) {
+            const text = encodeURIComponent(buildMessageText());
+            let url = '';
+            if (platform === 'whatsapp') {
+                url = `https://wa.me/?text=${text}`;
+            } else {
+                url = `https://t.me/share/url?url=https://tanyusha-salon.ru&text=${text}`;
+            }
+            window.open(url, '_blank');
+        }
+
+        // Копирование текста в буфер обмена
+        function copyToClipboard(text, callbackMsg) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast(callbackMsg);
+            } catch (err) {
+                showToast('Не удалось скопировать');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function copyAddress() {
+            copyToClipboard('Московская область, г. Балашиха, мкр. 27а, ул. Твардовского, 16, 1 этаж', 'Адрес скопирован в буфер обмена!');
+        }
+
+        function copyGeneratedMessage() {
+            const msg = buildMessageText();
+            copyToClipboard(msg, 'Текст заявки скопирован! Вставьте его в любой мессенджер.');
+        }
+
+        // Всплывающее уведомление (Toast)
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('hidden');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3200);
+        }
+
+        // Закрытие модалки по клику на фон
+        document.getElementById('booking-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeBookingModal();
+        });
+
+        // Инициализация при загрузке
+        window.onload = function() {
+            renderCalculator();
+        };
+    </script>
+</body>
+</html>
